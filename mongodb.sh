@@ -24,17 +24,18 @@ VALIDATE(){ #Functions receive inputs through args just like shell script args
         echo -e "$2 is...$R FAILURE $W " | tee -a $Log_File 
         exit 1
     else 
-        echo -e "$2 is...$R SUCCESS $W" | tee -a $Log_File 
+        echo -e "$2 is...$G SUCCESS $W" | tee -a $Log_File 
     fi
 }
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Adding Mongo repo"
 
 dnf install mongodb-org -y &>>$Log_File
-VALIDATE $? "Installing mongodb"
+VALIDATE $? "Installing MongoDB"
 
 systemctl enable mongod &>>$Log_File
-VALIDATE $? "Enabling mongodb"
+VALIDATE $? "Enabling MongoDB"
 
 systemctl start mongod &>>$Log_File
-VALIDATE $? "Starting mongodb"
+VALIDATE $? "Starting MongoDB"
