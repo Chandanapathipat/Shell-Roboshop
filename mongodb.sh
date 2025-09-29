@@ -4,6 +4,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 W="\e[0m"
+
 Logs_Folder="/var/log/Shell-Roboshop"
 Script_Name=$( echo $0 | cut -d "." -f1 )
 #Here $0 gives the script name
