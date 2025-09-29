@@ -10,6 +10,7 @@ Script_Name=$( echo $0 | cut -d "." -f1 )
 #Here $0 gives the script name
 MongoDB_Host="mongodb.chandana7.shop"
 Log_File="$Logs_Folder/$Script_Name.log"
+Script_Dir=$PWD
 
 User_id=$(id -u)
 
@@ -53,7 +54,7 @@ VALIDATE $? "unzip catalogue"
 npm install &>>$Log_File
 VALIDATE $? "Install Dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp $Script_Dir/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload
 systemctl enable catalogue 
