@@ -60,7 +60,7 @@ systemctl daemon-reload
 systemctl enable catalogue 
 systemctl start catalogue
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp $Script_Dir/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copy Mongo repo"
 
 dnf install mongodb-mongosh -y &>>$Log_File
