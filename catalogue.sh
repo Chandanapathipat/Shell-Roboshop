@@ -75,7 +75,7 @@ VALIDATE $? "Copy Mongo repo"
 dnf install mongodb-mongosh -y &>>$Log_File
 VALIDATE $? "Install MongoDB client"
 
-INDEX=$(mongosh mongodb.chandana7.shop --quiet --eval "db.getMongo().getDBNames().indexof('catalogue')")
+INDEX=$(mongosh mongodb.chandana7.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
     mongosh --host $MongoDB_Host </app/db/master-data.js &>>$Log_File
     VALIDATE $? "Load catalogue products"
