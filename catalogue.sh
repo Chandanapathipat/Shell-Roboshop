@@ -38,7 +38,7 @@ VALIDATE $? "Enabling NodeJS"
 dnf install nodejs -y &>>$Log_File
 VALIDATE $? "Installing NodeJS"
 
-id roboshop
+id roboshop &>>$Log_File
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$Log_File
     VALIDATE $? "Creating System User"
@@ -53,6 +53,10 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 VALIDATE $? "Downloading catalogue application"
 cd /app 
 VALIDATE $? "Changing to app directory"
+
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
+
 unzip /tmp/catalogue.zip &>>$Log_File
 VALIDATE $? "unzip catalogue"
 
